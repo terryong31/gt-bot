@@ -1,0 +1,108 @@
+name: Deploy Bot to VPS
+
+on: 
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+  workflow_dispatch:
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          VPS_PASSWORD: ${{ secrets.VPS_PASSWORD }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          envs: VPS_PASSWORD,GH_PAT
+          script: |
+            # Helper for sudo commands
+            do_sudo() {
+              echo "$VPS_PASSWORD" | sudo -S "$@"
+            }
+
+            # Setup directory (running as logged-in user)
+            DIR="/opt/telegram-bot"
+            
+            # Create directory if not exists (using sudo if needed)
+            if [ ! -d "$DIR" ]; then
+              do_sudo mkdir -p "$DIR"
+              do_sudo chown -R $USER:$USER "$DIR"
+            fi
+            
+            cd "$DIR"
+            
+            # Fix git ownership issue (prevents "dubious ownership" error)
+            git config --global --add safe.directory "$DIR" 2>/dev/null || true
+            
+            # Robust git handling
+            if [ -d ".git" ]; then
+              git fetch origin
+              git reset --hard origin/main
+              git clean -fd
+            else
+              git clone https://$GH_PAT@github.com/EASAcademy/telegram-bot.git .
+            fi
+            
+            # Create data directories
+            mkdir -p data/uploads
+            
+            # Backup database
+            cp data/bot.db data/bot.db.bak || true
+            
+            # Deploy Containers (assuming user is in docker group, else try sudo)
+            if groups | grep -q 'docker'; then
+              docker-compose -f docker/docker-compose.yml down
+              docker-compose -f docker/docker-compose.yml up -d --build --remove-orphans
+              docker system prune -f
+            else
+               do_sudo docker-compose -f docker/docker-compose.yml down
+               do_sudo docker-compose -f docker/docker-compose.yml up -d --build --remove-orphans
+               do_sudo docker system prune -f
+            fi
+            
+            # --- Host Nginx Configuration ---
+            
+            # Install Nginx and Certbot if missing
+            if ! command -v nginx &> /dev/null; then
+                do_sudo apt-get update
+                do_sudo apt-get install -y nginx certbot python3-certbot-nginx
+            fi
+            
+            # Only copy tbe.conf if it doesn't exist yet (to preserve SSL config)
+            if [ ! -f /etc/nginx/sites-available/tbe.conf ]; then
+                echo "First time setup - copying tbe.conf..."
+                do_sudo cp nginx/tbe.conf /etc/nginx/sites-available/tbe.conf
+                
+                # Disable default site
+                do_sudo rm -f /etc/nginx/sites-enabled/default
+                
+                # Enable tbe site
+                do_sudo ln -sf /etc/nginx/sites-available/tbe.conf /etc/nginx/sites-enabled/tbe.conf
+            else
+                echo "tbe.conf already exists - preserving SSL configuration"
+            fi
+            
+            # Test config and reload
+            do_sudo nginx -t && do_sudo systemctl reload nginx
+            
+            # SSL Setup (only if cert doesn't exist)
+            if ! do_sudo certbot certificates 2>/dev/null | grep -q "tbe.terryong.me"; then
+                echo "Obtaining SSL certificate..."
+                do_sudo certbot --nginx -d tbe.terryong.me --non-interactive --agree-tos -m terryong@example.com --redirect
+            else
+                echo "SSL certificate already exists for tbe.terryong.me"
+            fi
+            
+            echo "✅ Deployment and SSL configuration successful!"

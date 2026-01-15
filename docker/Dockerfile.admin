@@ -1,0 +1,35 @@
+# Stage 1: Build React frontend
+FROM node:20-slim AS frontend
+WORKDIR /app
+COPY admin/frontend/package*.json ./
+RUN npm install
+COPY admin/frontend/ ./
+RUN npm run build
+
+# Stage 2: Python backend with React static files
+FROM python:3.12-slim
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy API code as a package
+COPY admin/api/ ./admin/api/
+
+# Copy agent module (needed for Google OAuth)
+COPY agent/ ./agent/
+
+# Copy bot module (needed for config imports)
+COPY bot/ ./bot/
+
+# Copy built React app to static folder
+COPY --from=frontend /app/dist ./admin/api/static
+
+# Create data directory
+RUN mkdir -p /app/data/uploads
+
+EXPOSE 8080
+
+# Run as module to support relative imports
+CMD ["python", "-m", "uvicorn", "admin.api.main:app", "--host", "0.0.0.0", "--port", "8080"]

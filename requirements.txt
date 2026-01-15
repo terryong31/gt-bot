@@ -1,0 +1,38 @@
+# Bot dependencies
+requests
+python-dotenv
+
+# LangChain + Gemini (latest versions)
+langchain==1.2.0
+langchain-google-genai
+langchain-core
+langchain-core
+google-genai
+
+# Vector DB for memory (FAISS via LangChain)
+faiss-cpu
+numpy
+langchain-community
+
+# Image processing
+pillow-heif
+pillow
+pymupdf
+
+# Chart generation
+matplotlib
+pandas
+
+# Admin API dependencies
+fastapi
+uvicorn
+sqlalchemy
+pyjwt
+bcrypt
+python-multipart
+
+# Google API integration
+google-auth
+google-auth-oauthlib
+google-api-python-client
+langchain-google-community
