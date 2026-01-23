@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getConversationMessages, getMediaUrl } from '../api'
 import { formatTime } from '../utils'
+import type { ConversationDetail, Message } from '../types'
 import { ArrowLeft, Clock, Paperclip } from 'lucide-react'
 import { Button } from '../components/ui/Button'
 import { cn } from '../lib/utils'
@@ -11,23 +12,22 @@ const MESSAGES_PER_PAGE = 10
 export default function Conversation() {
     const { userId } = useParams<{ userId: string }>()
     const navigate = useNavigate()
-    const [data, setData] = useState<any>(null)
+    const [data, setData] = useState<ConversationDetail | null>(null)
     const [loading, setLoading] = useState(true)
     const [visibleCount, setVisibleCount] = useState(MESSAGES_PER_PAGE)
     const messagesEndRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
+        const loadMessages = async () => {
+            if (!userId) return
+            setLoading(true)
+            const result = await getConversationMessages(parseInt(userId))
+            setData(result)
+            setLoading(false)
+            setVisibleCount(MESSAGES_PER_PAGE)
+        }
         loadMessages()
     }, [userId])
-
-    const loadMessages = async () => {
-        if (!userId) return
-        setLoading(true)
-        const result = await getConversationMessages(parseInt(userId))
-        setData(result)
-        setLoading(false)
-        setVisibleCount(MESSAGES_PER_PAGE)
-    }
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -86,7 +86,7 @@ export default function Conversation() {
                 )}
 
                 <div className="space-y-6 flex-1">
-                    {visibleMessages.map((msg: any, idx: number) => {
+                    {visibleMessages.map((msg: Message, idx: number) => {
                         const isUser = msg.sender === 'user'
                         return (
                             <div key={`${msg.id}-${idx}`} className={cn("flex w-full", isUser ? "justify-end" : "justify-start")}>

@@ -1,5 +1,5 @@
 """
-Database operations for the Telegram bot.
+Database operations for the GT-Bot.
 """
 
 import sqlite3

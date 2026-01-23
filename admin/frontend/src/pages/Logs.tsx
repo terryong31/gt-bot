@@ -3,20 +3,21 @@ import { useNavigate } from 'react-router-dom'
 import { getConversations } from '../api'
 import { formatDateTime } from '../utils'
 import { MessageSquare } from 'lucide-react'
+import type { Conversation } from '../types'
 
 export default function Logs() {
-    const [conversations, setConversations] = useState<any[]>([])
+    const [conversations, setConversations] = useState<Conversation[]>([])
     const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
-
-    useEffect(() => { loadConversations() }, [])
-
-    const loadConversations = async () => {
-        setLoading(true)
-        const data = await getConversations()
-        setConversations(data)
-        setLoading(false)
-    }
+    useEffect(() => {
+        const loadConversations = async () => {
+            setLoading(true)
+            const data = await getConversations()
+            setConversations(data)
+            setLoading(false)
+        }
+        loadConversations()
+    }, [])
 
     if (loading) return <div className="text-center text-slate-500 dark:text-slate-400 py-12">Loading conversations...</div>
 

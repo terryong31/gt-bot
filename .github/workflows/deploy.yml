@@ -19,17 +19,16 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         env:
-          VPS_PASSWORD: ${{ secrets.VPS_PASSWORD }}
           GH_PAT: ${{ secrets.GH_PAT }}
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
-          password: ${{ secrets.VPS_PASSWORD }}
-          envs: VPS_PASSWORD,GH_PAT
+          key: ${{ secrets.VPS_KEY }}
+          envs: GH_PAT
           script: |
-            # Helper for sudo commands
+            # Helper for sudo commands (assuming passwordless sudo for ubuntu user)
             do_sudo() {
-              echo "$VPS_PASSWORD" | sudo -S "$@"
+              sudo "$@"
             }
 
             # Setup directory (running as logged-in user)
@@ -72,37 +71,4 @@ jobs:
                do_sudo docker system prune -f
             fi
             
-            # --- Host Nginx Configuration ---
-            
-            # Install Nginx and Certbot if missing
-            if ! command -v nginx &> /dev/null; then
-                do_sudo apt-get update
-                do_sudo apt-get install -y nginx certbot python3-certbot-nginx
-            fi
-            
-            # Only copy tbe.conf if it doesn't exist yet (to preserve SSL config)
-            if [ ! -f /etc/nginx/sites-available/tbe.conf ]; then
-                echo "First time setup - copying tbe.conf..."
-                do_sudo cp nginx/tbe.conf /etc/nginx/sites-available/tbe.conf
-                
-                # Disable default site
-                do_sudo rm -f /etc/nginx/sites-enabled/default
-                
-                # Enable tbe site
-                do_sudo ln -sf /etc/nginx/sites-available/tbe.conf /etc/nginx/sites-enabled/tbe.conf
-            else
-                echo "tbe.conf already exists - preserving SSL configuration"
-            fi
-            
-            # Test config and reload
-            do_sudo nginx -t && do_sudo systemctl reload nginx
-            
-            # SSL Setup (only if cert doesn't exist)
-            if ! do_sudo certbot certificates 2>/dev/null | grep -q "tbe.terryong.me"; then
-                echo "Obtaining SSL certificate..."
-                do_sudo certbot --nginx -d tbe.terryong.me --non-interactive --agree-tos -m terryong@example.com --redirect
-            else
-                echo "SSL certificate already exists for tbe.terryong.me"
-            fi
-            
-            echo "✅ Deployment and SSL configuration successful!"
+            echo "✅ Deployment successful! Please configure Caddy locally: 'gt-bot.terryong.me { reverse_proxy localhost:8080 }'"

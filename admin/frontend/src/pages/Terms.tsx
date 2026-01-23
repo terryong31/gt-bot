@@ -23,8 +23,8 @@ export default function Terms() {
 
                         <AnimatedSection>
                             <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                                Please read these Terms of Service ("Terms") carefully before using the EAS Academy Assistant
-                                (the "Service") operated by EAS Academy ("us", "we", or "our").
+                                Please read these Terms of Service ("Terms") carefully before using the GT-Bot
+                                (the "Service") operated by GT-Bot ("us", "we", or "our").
                             </p>
                             <p className="text-slate-700 dark:text-slate-300">
                                 By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any
@@ -38,7 +38,7 @@ export default function Terms() {
                                 Description of Service
                             </h2>
                             <p className="text-slate-700 dark:text-slate-300">
-                                EAS Academy Assistant is an AI-powered assistant integrated with the Telegram messaging platform.
+                                GT-Bot is an AI-powered assistant integrated with the Telegram messaging platform.
                                 It allows users to interact with Google services (Gmail, Drive, Sheets, Calendar) through natural
                                 language commands powered by Google Gemini.
                             </p>
@@ -95,7 +95,7 @@ export default function Terms() {
                                 <div className="flex items-start gap-3">
                                     <AlertTriangle className="text-amber-600 dark:text-amber-400 shrink-0" size={20} />
                                     <p className="text-slate-800 dark:text-slate-200 text-sm leading-relaxed">
-                                        In no event shall EAS Academy be liable for any indirect, incidental, special, consequential
+                                        In no event shall GT-Bot be liable for any indirect, incidental, special, consequential
                                         or punitive damages, including loss of profits, data, use, goodwill, or other intangible losses,
                                         resulting from your access to or use of the Service.
                                     </p>

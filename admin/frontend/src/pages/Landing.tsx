@@ -392,7 +392,7 @@ export default function Landing() {
                     <AnimatedSection className="mt-6">
                         <div className="bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800 rounded-xl p-5 text-center">
                             <p className="text-blue-800 dark:text-blue-300 text-xs leading-relaxed max-w-3xl mx-auto">
-                                <strong>Google API Services Compliance:</strong> EAS Academy Assistant's use and transfer of information received from
+                                <strong>Google API Services Compliance:</strong> GT-Bot's use and transfer of information received from
                                 Google APIs adheres to the{' '}
                                 <a
                                     href="https://developers.google.com/terms/api-services-user-data-policy"

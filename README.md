@@ -1,6 +1,6 @@
 # Google Workspace Telegram Bot with Admin Panel
 
-AI-powered Telegram bot using Gemini with admin dashboard for user access control and chat logging.
+AI-powered Telegram Bot using Gemini with admin dashboard for user access control and chat logging.
 
 ## Features
 
@@ -72,17 +72,17 @@ docker-compose -f docker/docker-compose.yml restart
 
 ## Environment Variables
 
-| Variable                 | Description                        |
-| ------------------------ | ---------------------------------- |
-| `TELEGRAM_BOT_TOKEN`   | Telegram bot token from @BotFather |
-| `GEMINI_API_KEY`       | Google AI API key                  |
-| `JWT_SECRET`           | Random secret for JWT signing      |
-| `ADMIN_USERNAME`       | Admin panel username               |
-| `ADMIN_PASSWORD`       | Admin panel password               |
-| `GOOGLE_CLIENT_ID`     | Google OAuth client ID             |
-| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret         |
-| `GOOGLE_REDIRECT_URI`  | OAuth callback URL                 |
-| `ELEVENLABS_API_KEY`   | Optional: ElevenLabs TTS API key   |
+| Variable                 | Description                      |
+| ------------------------ | -------------------------------- |
+| `TELEGRAM_BOT_TOKEN`   | GT-Bot token from @BotFather     |
+| `GEMINI_API_KEY`       | Google AI API key                |
+| `JWT_SECRET`           | Random secret for JWT signing    |
+| `ADMIN_USERNAME`       | Admin panel username             |
+| `ADMIN_PASSWORD`       | Admin panel password             |
+| `GOOGLE_CLIENT_ID`     | Google OAuth client ID           |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret       |
+| `GOOGLE_REDIRECT_URI`  | OAuth callback URL               |
+| `ELEVENLABS_API_KEY`   | Optional: ElevenLabs TTS API key |
 
 ## Bot Commands
 

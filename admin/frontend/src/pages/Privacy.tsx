@@ -47,7 +47,7 @@ export default function Privacy() {
 
                         <AnimatedSection>
                             <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-                                EAS Academy ("we", "us", or "our") operates the <strong>EAS Academy Assistant</strong> (the "App").
+                                GT-Bot ("we", "us", or "our") operates the <strong>GT-Bot</strong> (the "App").
                                 This page informs you of our policies regarding the collection, use, and disclosure of personal data
                                 when you use our App.
                             </p>
@@ -104,7 +104,7 @@ export default function Privacy() {
                             </h2>
                             <div className="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 p-6 my-6 not-prose rounded-r-xl">
                                 <p className="text-slate-800 dark:text-slate-200 text-sm leading-relaxed">
-                                    <strong>EAS Academy Assistant's use and transfer to any other app of information received from Google APIs
+                                    <strong>GT-Bot's use and transfer to any other app of information received from Google APIs
                                         will adhere to the{' '}
                                         <a
                                             href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes"

@@ -19,6 +19,7 @@ export function AnimatedSection({
     viewportMargin = '-100px'
 }: AnimatedSectionProps) {
     const ref = useRef(null)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const isInView = useInView(ref, { once: true, margin: viewportMargin as any })
 
     const directions = {

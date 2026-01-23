@@ -1,5 +1,5 @@
 """
-Bot package - Telegram bot core functionality.
+Bot package - GT-Bot core functionality.
 """
 
 from .config import telegram_agent, AGENT_CONFIG, MY_TZ, voice_enabled

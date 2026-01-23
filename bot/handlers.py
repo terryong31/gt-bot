@@ -1,5 +1,5 @@
 """
-Command handlers for Telegram bot.
+Command handlers for GT-Bot.
 """
 
 from .config import ELEVENLABS_API_KEY
@@ -23,7 +23,7 @@ def handle_command(message):
         is_allowed = is_user_registered(telegram_id)
         
         if is_allowed is None:
-            welcome_msg = """👋 Welcome to EAS Academy Bot!
+            welcome_msg = """👋 Welcome to GT-Bot!
 
 ❌ You're not registered yet.
 
@@ -64,7 +64,7 @@ Type /help for all commands. Let's get started!"""
     
     # Handle /help command
     if text == "/help":
-        help_msg = """📚 EAS Academy Bot - Help Guide
+        help_msg = """📚 GT-Bot - Help Guide
 
 🔧 SETUP COMMANDS:
 /register CODE - Register with invite code

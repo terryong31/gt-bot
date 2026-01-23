@@ -1,5 +1,5 @@
 """
-Message processor for Telegram bot.
+Message processor for GT-Bot.
 """
 
 from .config import telegram_agent

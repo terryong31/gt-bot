@@ -34,13 +34,16 @@ export function logout() {
 export function isAuthenticated() { return !!getToken() }
 
 export async function getUsers() { return (await apiRequest('/users')).json() }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function updateUser(id: number, data: any) { return (await apiRequest(`/users/${id}`, { method: 'PATCH', body: JSON.stringify(data) })).json() }
 export async function deleteUser(id: number) { return apiRequest(`/users/${id}`, { method: 'DELETE' }) }
 
 export async function getInvites() { return (await apiRequest('/invites')).json() }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function createInvite(data: any) { return (await apiRequest('/invites', { method: 'POST', body: JSON.stringify(data) })).json() }
 export async function deleteInvite(id: number) { return apiRequest(`/invites/${id}`, { method: 'DELETE' }) }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function getLogs(params?: any) {
     const query = new URLSearchParams()
     if (params?.user_id) query.set('user_id', params.user_id.toString())

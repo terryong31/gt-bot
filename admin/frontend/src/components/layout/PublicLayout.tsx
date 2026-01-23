@@ -27,10 +27,10 @@ export default function PublicLayout() {
                     <Link to="/" className="flex items-center gap-2 2xl:gap-3 group shrink-0">
                         <img
                             src="/company-logo.jpg"
-                            alt="EAS Academy Assistant"
+                            alt="Nego-lah"
                             className="h-9 w-auto 2xl:h-12 rounded-lg transition-all duration-300"
                         />
-                        <span className={`font-bold tracking-tight text-base sm:text-base 2xl:text-xl transition-colors ${showDarkText ? 'text-slate-900 dark:text-white' : 'text-white drop-shadow-md'}`}>EAS Academy Assistant</span>
+                        <span className={`font-bold tracking-tight text-base sm:text-base 2xl:text-xl transition-colors ${showDarkText ? 'text-slate-900 dark:text-white' : 'text-white drop-shadow-md'}`}>Nego-lah</span>
                     </Link>
 
                     {/* Desktop Nav */}
@@ -100,8 +100,8 @@ export default function PublicLayout() {
                         {/* Company Info */}
                         <div className="max-w-xs 2xl:max-w-md">
                             <div className="flex items-center gap-2 mb-3 2xl:mb-5">
-                                <img src="/company-logo.jpg" alt="EAS Academy Assistant" className="h-7 w-auto 2xl:h-10 rounded-lg" />
-                                <span className="font-bold text-slate-900 dark:text-white text-sm 2xl:text-lg">EAS Academy Assistant</span>
+                                <img src="/company-logo.jpg" alt="Nego-lah" className="h-7 w-auto 2xl:h-10 rounded-lg" />
+                                <span className="font-bold text-slate-900 dark:text-white text-sm 2xl:text-lg">Nego-lah</span>
                             </div>
                             <p className="text-slate-600 dark:text-slate-400 text-xs 2xl:text-base leading-relaxed">
                                 Connect your Google Workspace with Telegram securely. AI-powered productivity for professional teams.
@@ -127,7 +127,7 @@ export default function PublicLayout() {
                     </div>
 
                     <div className="mt-8 pt-6 2xl:mt-12 2xl:pt-8 border-t border-slate-100 dark:border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4 text-xs 2xl:text-base text-slate-500 dark:text-slate-500">
-                        <p>© 2026 EAS Academy. All rights reserved.</p>
+                        <p>© 2026 Nego-lah. All rights reserved.</p>
                         <p className="max-w-md 2xl:max-w-lg text-center md:text-right">
                             Google and the Google logo are registered trademarks of Google LLC.
                             This application is not endorsed by or affiliated with Google LLC.

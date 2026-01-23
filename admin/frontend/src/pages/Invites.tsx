@@ -4,21 +4,23 @@ import { formatDate } from '../utils'
 import { Button } from '../components/ui/Button'
 import { Check, Copy, Ticket, Plus, Trash2, X } from 'lucide-react'
 import { cn } from '../lib/utils'
+import type { Invite } from '../types'
 
 export default function Invites() {
-    const [invites, setInvites] = useState<any[]>([])
+    const [invites, setInvites] = useState<Invite[]>([])
     const [loading, setLoading] = useState(true)
     const [showModal, setShowModal] = useState(false)
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
     const [copied, setCopied] = useState<string | null>(null)
 
-    useEffect(() => { loadInvites() }, [])
-
-    const loadInvites = async () => {
-        setInvites(await getInvites())
-        setLoading(false)
-    }
+    useEffect(() => {
+        const loadInvites = async () => {
+            setInvites(await getInvites())
+            setLoading(false)
+        }
+        loadInvites()
+    }, [])
 
     const handleCreate = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -29,7 +31,7 @@ export default function Invites() {
         setPhone('')
     }
 
-    const removeInvite = async (invite: any) => {
+    const removeInvite = async (invite: Invite) => {
         if (!confirm(`Delete invite for ${invite.name}?`)) return
         await deleteInvite(invite.id)
         setInvites(invites.filter(i => i.id !== invite.id))

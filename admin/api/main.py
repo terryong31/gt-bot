@@ -13,7 +13,7 @@ from .routes.invites import router as invites_router
 from .routes.logs import router as logs_router
 from .routes.google_oauth import router as google_router
 
-app = FastAPI(title="Telegram Bot Admin", version="1.0.0")
+app = FastAPI(title="GT-Bot Admin", version="1.0.0")
 
 # CORS
 app.add_middleware(

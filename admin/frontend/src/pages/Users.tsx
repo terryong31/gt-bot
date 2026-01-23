@@ -2,24 +2,26 @@ import { useState, useEffect } from 'react'
 import { getUsers, updateUser, deleteUser } from '../api'
 import { User as UserIcon, Trash2, ShieldCheck, ShieldAlert } from 'lucide-react'
 import { cn } from '../lib/utils'
+import type { User } from '../types'
 
 export default function Users() {
-    const [users, setUsers] = useState<any[]>([])
+    const [users, setUsers] = useState<User[]>([])
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => { loadUsers() }, [])
+    useEffect(() => {
+        const loadUsers = async () => {
+            setUsers(await getUsers())
+            setLoading(false)
+        }
+        loadUsers()
+    }, [])
 
-    const loadUsers = async () => {
-        setUsers(await getUsers())
-        setLoading(false)
-    }
-
-    const toggleUser = async (user: any) => {
+    const toggleUser = async (user: User) => {
         await updateUser(user.id, { is_allowed: !user.is_allowed })
         setUsers(users.map(u => u.id === user.id ? { ...u, is_allowed: !u.is_allowed } : u))
     }
 
-    const removeUser = async (user: any) => {
+    const removeUser = async (user: User) => {
         if (!confirm(`Delete ${user.first_name || user.username}?`)) return
         await deleteUser(user.id)
         setUsers(users.filter(u => u.id !== user.id))

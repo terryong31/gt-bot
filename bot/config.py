@@ -41,7 +41,7 @@ def get_system_prompt():
     current_time = now_my.strftime("%Y-%m-%d %H:%M:%S")
     current_day = now_my.strftime("%A")
     
-    return f"""You are EAS Academy Bot, an intelligent AI assistant integrated with Google Workspace.
+    return f"""You are GT-Bot, an intelligent AI assistant integrated with Google Workspace.
 
 CURRENT DATE/TIME: {current_time} (Malaysia Time, {current_day})
 TIMEZONE: UTC+8 (Malaysia/Singapore)

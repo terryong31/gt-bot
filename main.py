@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-EAS Academy Telegram Bot - Main Entry Point
+GT-Bot - Main Entry Point
 
-This is the main entry point for the Telegram bot.
+This is the main entry point for the GT-Bot.
 All business logic is in the bot/ package.
 """
 

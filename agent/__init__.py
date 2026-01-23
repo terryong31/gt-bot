@@ -1,4 +1,4 @@
-"""Agent module for LangChain-based Telegram bot"""
+"""Agent module for LangChain-based GT-Bot"""
 from .llm import create_agent, AgentConfig
 from .memory import UserMemory, MemoryManager, memory_manager
 
