@@ -62,12 +62,12 @@ jobs:
             
             # Deploy Containers (assuming user is in docker group, else try sudo)
             if groups | grep -q 'docker'; then
-              docker-compose -f docker/docker-compose.yml down
-              docker-compose -f docker/docker-compose.yml up -d --build --remove-orphans
+              docker compose -f docker/docker-compose.yml down
+              docker compose -f docker/docker-compose.yml up -d --build --remove-orphans
               docker system prune -f
             else
-               do_sudo docker-compose -f docker/docker-compose.yml down
-               do_sudo docker-compose -f docker/docker-compose.yml up -d --build --remove-orphans
+               do_sudo docker compose -f docker/docker-compose.yml down
+               do_sudo docker compose -f docker/docker-compose.yml up -d --build --remove-orphans
                do_sudo docker system prune -f
             fi
             
