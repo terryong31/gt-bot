@@ -46,13 +46,18 @@ jobs:
             git config --global --add safe.directory "$DIR" 2>/dev/null || true
             
             # Robust git handling
-            if [ -d ".git" ]; then
-              git fetch origin
-              git reset --hard origin/main
-              git clean -fd
+            if [ ! -d ".git" ]; then
+              # Initialize if not a git repo
+              git init
+              git remote add origin https://$GH_PAT@github.com/terryong31/gt-bot.git
             else
-              git clone https://$GH_PAT@github.com/EASAcademy/telegram-bot.git .
+              # Ensure remote is correct
+              git remote set-url origin https://$GH_PAT@github.com/terryong31/gt-bot.git
             fi
+            
+            # Fetch and reset
+            git fetch origin
+            git reset --hard origin/main
             
             # Create data directories
             mkdir -p data/uploads
