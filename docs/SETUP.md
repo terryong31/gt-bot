@@ -15,6 +15,7 @@ nano .env
 ```
 
 Paste this (with YOUR tokens):
+
 ```
 TELEGRAM_BOT_TOKEN=your_bot_token
 GEMINI_API_KEY=your_gemini_key
@@ -35,12 +36,13 @@ Save: `Ctrl+X`, `Y`, `Enter`
 
 ## 2. Add GitHub Secrets
 
-Go to: `https://github.com/EASAcademy/telegram-bot/settings/secrets/actions`
+Go to: `https://github.com/{your-github-username}}/gt-bot/settings/secrets/actions`
 
 Add these 4 secrets:
+
 - `VPS_HOST` = your VPS IP
 - `VPS_USER` = your SSH username
-- `VPS_PASSWORD` = your SSH password  
+- `VPS_PASSWORD` = your SSH password
 - `GH_PAT` = your GitHub Personal Access Token
 
 ---
@@ -48,6 +50,7 @@ Add these 4 secrets:
 ## 3. Deploy
 
 Just push to main:
+
 ```bash
 git push origin main
 ```
@@ -84,13 +87,13 @@ docker-compose -f docker/docker-compose.yml up -d --build
 
 ## Bot Commands
 
-| Command | Description |
-|---------|-------------|
-| `/start` | Welcome + registration check |
-| `/help` | Show all commands |
-| `/register CODE` | Register with invite code |
-| `/register_google` | Connect Google account |
-| `/enable_voice` | Enable voice responses |
-| `/disable_voice` | Disable voice responses |
+| Command              | Description                  |
+| -------------------- | ---------------------------- |
+| `/start`           | Welcome + registration check |
+| `/help`            | Show all commands            |
+| `/register CODE`   | Register with invite code    |
+| `/register_google` | Connect Google account       |
+| `/enable_voice`    | Enable voice responses       |
+| `/disable_voice`   | Disable voice responses      |
 
 **That's it. Simple.**

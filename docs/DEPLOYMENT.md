@@ -7,6 +7,7 @@ Your bot now deploys automatically using **GitHub Actions + Docker** to your Hos
 ## What Happens on Push
 
 When you push to `main`:
+
 1. ✅ GitHub Actions connects to your VPS
 2. ✅ Pulls latest code
 3. ✅ Stops old Docker containers
@@ -40,12 +41,12 @@ telegram-bot/
 
 Add these in **GitHub Settings → Secrets and variables → Actions**:
 
-| Secret | Description | Example |
-|--------|-------------|---------|
-| `VPS_HOST` | VPS IP/hostname | `123.45.67.89` |
-| `VPS_USER` | SSH username | `ubuntu` |
-| `VPS_PASSWORD` | SSH password | `your-password` |
-| `GH_PAT` | Personal Access Token | `ghp_xxxxxxxxxxxx` |
+| Secret           | Description           | Example              |
+| ---------------- | --------------------- | -------------------- |
+| `VPS_HOST`     | VPS IP/hostname       | `123.45.67.89`     |
+| `VPS_USER`     | SSH username          | `ubuntu`           |
+| `VPS_PASSWORD` | SSH password          | `your-password`    |
+| `GH_PAT`       | Personal Access Token | `ghp_xxxxxxxxxxxx` |
 
 ### 2. VPS Prerequisites
 
@@ -76,6 +77,7 @@ nano .env
 ```
 
 Add these lines:
+
 ```
 TELEGRAM_BOT_TOKEN=your_bot_token_here
 GEMINI_API_KEY=your_gemini_api_key_here
@@ -98,7 +100,7 @@ git commit -m "Deploy changes"
 git push origin main
 ```
 
-Watch deployment at: `https://github.com/EASAcademy/telegram-bot/actions`
+Watch deployment at: `https://github.com/{your-github-username}/gt-bot/actions`
 
 ## Manual Commands on VPS
 
@@ -127,11 +129,13 @@ docker-compose -f docker/docker-compose.yml up -d --build
 ## Troubleshooting
 
 **Container keeps restarting?**
+
 ```bash
 docker-compose -f docker/docker-compose.yml logs telegram-bot
 ```
 
 **Need to rebuild manually?**
+
 ```bash
 cd /opt/telegram-bot
 git pull origin main
@@ -140,12 +144,7 @@ docker-compose -f docker/docker-compose.yml up -d --build
 ```
 
 **Check if .env is correct:**
+
 ```bash
 cat /opt/telegram-bot/.env
-```
-
-**Check Nginx status:**
-```bash
-sudo systemctl status nginx
-sudo nginx -t
 ```

@@ -24,7 +24,7 @@ export default function Dashboard() {
             {/* Mobile Header */}
             <div className="fixed top-0 left-0 right-0 z-20 h-16 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-4 md:hidden">
                 <div className="flex items-center gap-3">
-                    <img src="/company-logo.jpg" alt="EAS Academy" className="h-8 w-auto rounded-lg" />
+                    <img src="/logo.png" alt="GT-Bot" className="h-8 w-auto rounded-lg" />
                     <span className="font-bold text-slate-900 dark:text-white">Admin</span>
                 </div>
                 <button
@@ -50,7 +50,7 @@ export default function Dashboard() {
             )}>
                 <div className="h-16 flex items-center gap-3 px-6 border-b border-slate-100 dark:border-slate-700">
                     <img src="/company-logo.jpg" alt="EAS Academy" className="h-8 w-auto rounded-lg" />
-                    <span className="font-bold text-slate-900 dark:text-white tracking-tight">EAS Admin</span>
+                    <span className="font-bold text-slate-900 dark:text-white tracking-tight">GT-Bot Admin</span>
                 </div>
 
                 <div className="p-4">
