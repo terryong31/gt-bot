@@ -49,7 +49,7 @@ export default function Dashboard() {
                 isSidebarOpen ? "translate-x-0" : "-translate-x-full"
             )}>
                 <div className="h-16 flex items-center gap-3 px-6 border-b border-slate-100 dark:border-slate-700">
-                    <img src="/company-logo.jpg" alt="EAS Academy" className="h-8 w-auto rounded-lg" />
+                    <img src="/logo.png" alt="GT-Bot" className="h-8 w-auto rounded-lg" />
                     <span className="font-bold text-slate-900 dark:text-white tracking-tight">GT-Bot Admin</span>
                 </div>
 
