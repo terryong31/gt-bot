@@ -20,11 +20,21 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REDIRECT_URI: ${{ secrets.GOOGLE_REDIRECT_URI }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_KEY }}
-          envs: GH_PAT
+          envs: GH_PAT,TELEGRAM_BOT_TOKEN,GEMINI_API_KEY,JWT_SECRET,ADMIN_USERNAME,ADMIN_PASSWORD,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,GOOGLE_REDIRECT_URI,ELEVENLABS_API_KEY,ELEVENLABS_VOICE_ID
           script: |
             # Helper for sudo commands (assuming passwordless sudo for ubuntu user)
             do_sudo() {
@@ -58,6 +68,21 @@ jobs:
             # Fetch and reset
             git fetch origin
             git reset --hard origin/main
+            
+            # Create .env file from secrets
+            echo "Creating .env file..."
+            cat <<EOF > .env
+            TELEGRAM_BOT_TOKEN=$TELEGRAM_BOT_TOKEN
+            GEMINI_API_KEY=$GEMINI_API_KEY
+            JWT_SECRET=$JWT_SECRET
+            ADMIN_USERNAME=$ADMIN_USERNAME
+            ADMIN_PASSWORD=$ADMIN_PASSWORD
+            GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID
+            GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET
+            GOOGLE_REDIRECT_URI=$GOOGLE_REDIRECT_URI
+            ELEVENLABS_API_KEY=$ELEVENLABS_API_KEY
+            ELEVENLABS_VOICE_ID=$ELEVENLABS_VOICE_ID
+            EOF
             
             # Create data directories
             mkdir -p data/uploads
