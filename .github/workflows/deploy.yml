@@ -72,16 +72,16 @@ jobs:
             # Create .env file from secrets
             echo "Creating .env file..."
             cat <<EOF > .env
-            TELEGRAM_BOT_TOKEN='$TELEGRAM_BOT_TOKEN'
-            GEMINI_API_KEY='$GEMINI_API_KEY'
-            JWT_SECRET='$JWT_SECRET'
-            ADMIN_USERNAME='$ADMIN_USERNAME'
-            ADMIN_PASSWORD='$ADMIN_PASSWORD'
-            GOOGLE_CLIENT_ID='$GOOGLE_CLIENT_ID'
-            GOOGLE_CLIENT_SECRET='$GOOGLE_CLIENT_SECRET'
-            GOOGLE_REDIRECT_URI='$GOOGLE_REDIRECT_URI'
-            ELEVENLABS_API_KEY='$ELEVENLABS_API_KEY'
-            ELEVENLABS_VOICE_ID='$ELEVENLABS_VOICE_ID'
+            TELEGRAM_BOT_TOKEN=$TELEGRAM_BOT_TOKEN
+            GEMINI_API_KEY=$GEMINI_API_KEY
+            JWT_SECRET=$JWT_SECRET
+            ADMIN_USERNAME=$ADMIN_USERNAME
+            ADMIN_PASSWORD=$ADMIN_PASSWORD
+            GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID
+            GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET
+            GOOGLE_REDIRECT_URI=$GOOGLE_REDIRECT_URI
+            ELEVENLABS_API_KEY=$ELEVENLABS_API_KEY
+            ELEVENLABS_VOICE_ID=$ELEVENLABS_VOICE_ID
             EOF
             
             # Create data directories

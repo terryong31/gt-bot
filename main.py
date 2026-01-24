@@ -42,29 +42,33 @@ def main():
                 executor.submit(process_message, first_msg)
     
     while True:
-        updates = get_updates(offset)
-        if "result" in updates:
-            for item in updates["result"]:
-                offset = item["update_id"] + 1
-                if "message" in item:
-                    msg = item["message"]
-                    media_group_id = msg.get("media_group_id")
-                    
-                    if media_group_id:
-                        # Part of a media group - batch it
-                        if media_group_id not in media_groups:
-                            media_groups[media_group_id] = []
-                        media_groups[media_group_id].append(msg)
+        try:
+            updates = get_updates(offset)
+            if "result" in updates:
+                for item in updates["result"]:
+                    offset = item["update_id"] + 1
+                    if "message" in item:
+                        msg = item["message"]
+                        media_group_id = msg.get("media_group_id")
                         
-                        # Process after 0.5s of no new messages in this group
-                        if media_group_id in media_group_timers:
-                            media_group_timers[media_group_id].cancel()
-                        timer = threading.Timer(0.5, process_media_group, [media_group_id])
-                        media_group_timers[media_group_id] = timer
-                        timer.start()
-                    else:
-                        # Single message - process immediately
-                        executor.submit(process_message, msg)
+                        if media_group_id:
+                            # Part of a media group - batch it
+                            if media_group_id not in media_groups:
+                                media_groups[media_group_id] = []
+                            media_groups[media_group_id].append(msg)
+                            
+                            # Process after 0.5s of no new messages in this group
+                            if media_group_id in media_group_timers:
+                                media_group_timers[media_group_id].cancel()
+                            timer = threading.Timer(0.5, process_media_group, [media_group_id])
+                            media_group_timers[media_group_id] = timer
+                            timer.start()
+                        else:
+                            # Single message - process immediately
+                            executor.submit(process_message, msg)
+        except Exception as e:
+            print(f"[Main] Polling error: {e}")
+            time.sleep(1)
                         
         time.sleep(0.1)
 

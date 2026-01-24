@@ -9,8 +9,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Environment variables
-TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "").strip("'").strip('"')
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip("'").strip('"')
 DATABASE_PATH = os.getenv("DATABASE_URL", "sqlite:///./data/bot.db").replace("sqlite:///", "")
 UPLOADS_DIR = "./data/uploads"
 
