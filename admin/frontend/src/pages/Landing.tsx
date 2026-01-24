@@ -278,7 +278,7 @@ export default function Landing() {
                                                         <MessageSquare size={12} className="text-blue-600 dark:text-blue-400" />
                                                     </div>
                                                     <div>
-                                                        <p className="font-semibold text-slate-900 dark:text-white text-xs">EAS Assistant</p>
+                                                        <p className="font-semibold text-slate-900 dark:text-white text-xs">GT-Bot</p>
                                                         <p className="text-[10px] text-slate-500 dark:text-slate-400">Powered by Gemini</p>
                                                     </div>
                                                 </div>
