@@ -161,7 +161,7 @@ export default function Landing() {
                     {/* CTAs - Sparkle button + underlined link */}
                     <AnimatedSection delay={0.4}>
                         <div className="flex flex-col items-center justify-center gap-6 2xl:gap-8 2xl:scale-125 2xl:mt-4 origin-top transition-all duration-300">
-                            <a href="https://t.me/eas_academy_testing_n8n_bot" target="_blank" rel="noopener noreferrer" className="transform scale-125 pb-4">
+                            <a href="https://t.me/terry_gt_bot" target="_blank" rel="noopener noreferrer" className="transform scale-125 pb-4">
                                 <button className="sparkle-button">
                                     <div className="sparkle-inner !text-lg !px-8">
                                         <div className="sparkle-svgs">
@@ -427,7 +427,7 @@ export default function Landing() {
                             Google Workspace integration.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 2xl:gap-5 justify-center">
-                            <a href="https://t.me/eas_academy_testing_n8n_bot" target="_blank" rel="noopener noreferrer">
+                            <a href="https://t.me/terry_gt_bot" target="_blank" rel="noopener noreferrer">
                                 <button className="inline-flex items-center justify-center gap-2 px-6 py-3 2xl:px-8 2xl:py-4 bg-white text-slate-900 rounded-lg font-semibold text-sm 2xl:text-lg hover:bg-slate-100 transition-colors shadow-lg">
                                     Get Started Free <ArrowRight size={16} className="2xl:w-5 2xl:h-5" />
                                 </button>
