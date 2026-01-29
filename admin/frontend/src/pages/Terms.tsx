@@ -131,7 +131,7 @@ export default function Terms() {
                                 Contact
                             </h2>
                             <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 not-prose">
-                                <p className="text-slate-900 dark:text-white">Questions about these Terms? Email us at <a href="mailto:terryong30@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">terryong30@gmail.com</a></p>
+                                <p className="text-slate-900 dark:text-white">Questions about these Terms? Email us at <a href="mailto:easacademy123@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">easacademy123@gmail.com</a></p>
                             </div>
                         </AnimatedSection>
                     </div>
