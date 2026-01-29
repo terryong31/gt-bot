@@ -147,7 +147,7 @@ export default function Privacy() {
                             </h2>
                             <p className="text-slate-700 dark:text-slate-300">If you have any questions about this Privacy Policy:</p>
                             <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 mt-4 not-prose">
-                                <p className="text-slate-900 dark:text-white font-medium">Email: <a href="mailto:terryong30@gmail.com" className="text-blue-600 dark:text-blue-400">terryong30@gmail.com</a></p>
+                                <p className="text-slate-900 dark:text-white font-medium">Email: <a href="mailto:easacademy123@gmail.com" className="text-blue-600 dark:text-blue-400">easacademy123@gmail.com</a></p>
                             </div>
                         </AnimatedSection>
                     </div>
